@@ -25,7 +25,7 @@ public AuthService(UserRepository userRepository, UserService userService, Passw
         if (!userRepository.existsByUsername(userName)) {
             return false;
         }
-        User user = userRepository.findByUserName(userName).orElseTrow(()->new UsernameNotFoundException("Юзер не найден"));
+        User user = userRepository.findByUsername(userName).orElseThrow(() -> new UsernameNotFoundException (" Пользователь не найден"));
         return passwordEncoder.matches(password, user.getPassword());
     }
 

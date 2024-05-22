@@ -4,7 +4,7 @@ package com.example.entity;
  */
 
 import jakarta.persistence.*;
-import jdk.internal.access.JavaIOFileDescriptorAccess;
+
 import lombok.*;
 import org.hibernate.annotations.NaturalId;
 
@@ -52,7 +52,7 @@ public class User {
    
 
 
-   
+
 
 }
 

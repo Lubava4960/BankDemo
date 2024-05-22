@@ -2,7 +2,8 @@ package com.example.controller;
 
 import com.example.dto.CreateOrUpdateUserDto;
 import com.example.dto.Login;
-import com.example.dto.UserDto;
+import com.example.dto.RegisterDTO;
+import com.example.service.AuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -26,8 +27,8 @@ public class AuthController {
             tags =  "Авторизация"
     )
     @PostMapping("/login")
-    public ResponseEntity<UserDto> login(@RequestBody Login login) {
-        UserDto userDto = authService.login(login.getUsername(), login.getPassword());
+    public ResponseEntity<Boolean> login(@RequestBody Login login) {
+        boolean userDto = authService.login(login.getUsername(), login.getPassword());
         return ResponseEntity.ok(userDto);
     }
 
@@ -37,7 +38,7 @@ public class AuthController {
     )
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody CreateOrUpdateUserDto createUserDto) {
-        if (authService.register(register())) {
+        if (authService.register(new RegisterDTO())) {
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();

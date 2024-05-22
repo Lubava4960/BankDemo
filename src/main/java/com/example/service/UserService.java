@@ -35,7 +35,7 @@ public class UserService {
         /**
          * Проверка, что логин, телефон и email не заняты
          */
-        if (userRepository.findByUserName(user.getUserName()) != null) {
+        if (userRepository.findByUsername(user.getUserName()) != null) {
             throw new IllegalArgumentException("Username is already taken");
         }
         if (userRepository.findByPhone(user.getPhone()) != null) {
